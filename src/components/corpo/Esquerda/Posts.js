@@ -1,3 +1,4 @@
+import React from "react";
 import img_meowed from "../../../assets/img/meowed.svg";
 import img_barked from "../../../assets/img/barked.svg";
 import img_respondeai from "../../../assets/img/respondeai.svg";
@@ -23,6 +24,9 @@ export default function Posts() {
     },
   ];
 
+  const [liked, setLiked] = React.useState(false);
+  const [salvo, setSalvo] = React.useState(false);
+
   return (
     <div class="posts">
       {itens.map((item) => (
@@ -36,20 +40,41 @@ export default function Posts() {
               <ion-icon name="ellipsis-horizontal"></ion-icon>
             </div>
           </div>
-
           <div class="conteudo">
             <img src={item.cont} />
           </div>
-
           <div class="fundo">
             <div class="acoes">
               <div>
-                <ion-icon name="heart-outline"></ion-icon>
+                {liked ? (
+                  <ion-icon
+                    name="heart"
+                    style={{ color: "red" }}
+                    onClick={() => setLiked(!liked)}
+                  ></ion-icon>
+                ) : (
+                  <ion-icon
+                    name="heart-outline"
+                    onClick={() => setLiked(!liked)}
+                  ></ion-icon>
+                )}
+
                 <ion-icon name="chatbubble-outline"></ion-icon>
+
                 <ion-icon name="paper-plane-outline"></ion-icon>
               </div>
               <div>
-                <ion-icon name="bookmark-outline"></ion-icon>
+                {salvo ? (
+                  <ion-icon
+                    name="bookmark"
+                    onClick={() => setSalvo(!salvo)}
+                  ></ion-icon>
+                ) : (
+                  <ion-icon
+                    name="bookmark-outline"
+                    onClick={() => setSalvo(!salvo)}
+                  ></ion-icon>
+                )}
               </div>
             </div>
 
